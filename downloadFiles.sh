@@ -1,5 +1,22 @@
 #/usr/sh
 
-wget -O	dataintegration.zip http://sourceforge.net/projects/pentaho/files/Data%20Integration/5.1/pdi-ce-5.1.0.0-752.zip/download
+#FIXME Do a test to check if unzip is installed
+echo "Installing unzip to extract dataintegration..."
 
+apt-get install unzip
 
+while IFS=' ' read -r filename url
+do
+	echo "File to download - $filename"
+	echo "File url - $url"
+
+	# Download current file
+	wget -O	$filename $url
+
+	#Extract file
+	unzip $filename
+
+	#Remove zip
+	rm $filename -f
+
+done < dependencies
