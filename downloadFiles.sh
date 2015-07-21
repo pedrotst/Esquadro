@@ -5,6 +5,9 @@ echo "Installing unzip to extract dataintegration..."
 
 apt-get install unzip
 
+#back to root of Esquadro
+cd ../
+
 while IFS=' ' read -r filename url
 do
 	echo "File to download - $filename"
@@ -19,4 +22,4 @@ do
 	#Remove zip
 	rm $filename -f
 
-done < dependencies
+done < scripts/dependencies
