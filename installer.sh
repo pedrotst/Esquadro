@@ -1,12 +1,12 @@
 #!/bin/sh
 
 
-while read packege; do
-	if  dpkg -s "$packege" 2>/dev/null | grep  "Status: install ok installed">/dev/null;
+while read package; do
+	if  dpkg -s "$package" 2>/dev/null | grep  "Status: install ok installed">/dev/null;
 	then
-		echo "$packege is already installed";
+		echo "$package is already installed";
 	else
-		echo "Installing $packege\n";
-		apt-get --yes --force-yes  install "$packege";
+		echo "Installing $package\n";
+		apt-get --yes --force-yes  install "$package";
 	fi
-done < packeges
+done < packages
