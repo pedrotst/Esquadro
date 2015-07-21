@@ -1,5 +1,5 @@
 #/usr/sh
 
-wget -O	-diIntegration http://sourceforge.net/projects/pentaho/files/Data%20Integration/5.3/pdi-ce-5.3.0.0-213.zip/download
+wget -O	dataintegration.zip http://sourceforge.net/projects/pentaho/files/Data%20Integration/5.1/pdi-ce-5.1.0.0-752.zip/download
 
 
