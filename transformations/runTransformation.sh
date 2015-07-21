@@ -1,5 +1,6 @@
 #!/bin/bash
-#json="/home/pwener/Documentos/scripts/transformations/tests/104.json"
+
+# load json file
 json="$1"
 if [ -e $json ]; then
 	echo "Archive json found!"
@@ -10,7 +11,7 @@ fi
 
 path_json_file=$(cd $(dirname "$json") && pwd -P)/$(basename "$json")
 
-#log="../log.file"
+# verify if log file exist
 log="$2"
 if [ -e $log ]; then
 	echo "Log file exist!"
