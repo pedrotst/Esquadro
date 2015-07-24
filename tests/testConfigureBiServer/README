@@ -1,0 +1,6 @@
+This test checks if the databases necessary for 
+runing BI-Server were created. It uses docker
+to set up a mysql dabatabe so it is necessarily
+to have docker installed. Also, the test has
+to be executed as a root because the docker
+commands need it.
