@@ -1,12 +1,28 @@
 #!/bin/sh
 
-
+logFile=/tmp/installerpentaho
 while read package; do
 	if  dpkg -s "$package" 2>/dev/null | grep  "Status: install ok installed">/dev/null;
 	then
 		echo "$package is already installed";
 	else
 		echo "Installing $package\n";
-		apt-get --yes --force-yes  install "$package";
+		result=$(apt-get --yes --force-yes  install "$package" >>"$logFile");
+        echo "This is the result: $result\n";
 	fi
 done < packages
+
+./installKeys.sh
+
+workDirectory=""
+if [ -d "$1" ]; then
+    echo "The installation is going to use the directory $1"
+    workDirectory=$1
+else
+    workDirectory="/etc/esquadro"
+    echo "It is going to create the default directory in $workDirectory " 
+    mkdir $workDirectory
+    echo "The directory is created"
+fi
+
+./downloadFiles.sh $workDirectory
