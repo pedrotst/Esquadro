@@ -1,7 +1,6 @@
 #/usr/sh
 
 #BIServer is located in back folder
-cd ../
 
 #Set properties of user
 host=$HOST_MYSQL
