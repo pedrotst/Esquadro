@@ -10,9 +10,12 @@ port=$PORT_MYSQL
 echo "Creating databases of BIserver..."
 
 #Try create this tables
-mysql -h $host -P $port -u root -proot < "biserver-ce/data/mysql5/create_jcr_mysql.sql"
-mysql -h $host -P $port -u root -proot < "biserver-ce/data/mysql5/create_quartz_mysql.sql"
-mysql -h $host -P $port -u root -proot < "biserver-ce/data/mysql5/create_repository_mysql.sql"
+biserverdiretorio=$DIR_BI_SERVER
+host=$HOST_MYSQL
+port=$PORT_MYSQL
+mysql -h $host -P $port -u root -proot < "$biserverdiretorio/biserver-ce/data/mysql5/create_jcr_mysql.sql"
+mysql -h $host -P $port -u root -proot < "$biserverdiretorio/biserver-ce/data/mysql5/create_quartz_mysql.sql"
+mysql -h $host -P $port -u root -proot < "$biserverdiretorio/biserver-ce/data/mysql5/create_repository_mysql.sql"
 
 echo "The Databases required was created!"
 
@@ -28,4 +31,4 @@ cp "$files_cfg/mysql5.hibernate.cfg.xml" "/biserver-ce/pentaho-solutions/system/
 cp "$files_cfg/quartz.properties" "/biserver-ce/pentaho-solutions/system/quartz/"
 cp "$files_cfg/repository.xml" "biserver-ce/pentaho-solutions/system/jackrabbit/"
 
-echo "Copy success!"
+
