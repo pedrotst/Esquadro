@@ -7,6 +7,7 @@ while read package; do
 		echo "$package is already installed";
 	else
 		echo "Installing $package\n";
-		apt-get --yes --force-yes  install "$package";
+		result=$(apt-get --yes --force-yes  install "$package");
+        echo "$result\n";
 	fi
 done < packages
