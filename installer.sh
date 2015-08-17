@@ -1,6 +1,9 @@
 #!/bin/sh
 
-logFile=/tmp/installerpentaho
+./installKeys.sh
+
+logFile=/tmp/esquadro/install.log
+
 while read package; do
 	if  dpkg -s "$package" 2>/dev/null | grep  "Status: install ok installed">/dev/null;
 	then
@@ -12,14 +15,12 @@ while read package; do
 	fi
 done < packages
 
-./installKeys.sh
-
 workDirectory=""
 if [ -d "$1" ]; then
     echo "The installation is going to use the directory $1"
     workDirectory=$1
 else
-    workDirectory="/etc/esquadro"
+    workDirectory="/usr/esquadro"
     echo "It is going to create the default directory in $workDirectory " 
     mkdir $workDirectory
     echo "The directory is created"
