@@ -3,6 +3,15 @@
 #BIServer is located in back folder
 
 #Set properties of user
+
+#Set properties of user
+host=$HOST_MYSQL
+port=$PORT_MYSQL
+
+echo "Creating databases of BIserver..."
+
+#Try create this tables
+biserverdiretorio=$DIR_BI_SERVER
 host=$HOST_MYSQL
 port=$PORT_MYSQL
 
