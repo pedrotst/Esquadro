@@ -1,8 +1,10 @@
 #!/bin/sh
 
+apt-get --yes --force-yes  install  wget
+
 ./installKeys.sh
 
-logFile=/tmp/esquadro/install.log
+logFile=/tmp/esquadro.install.log
 
 while read package; do
 	if  dpkg -s "$package" 2>/dev/null | grep  "Status: install ok installed">/dev/null;
@@ -14,16 +16,14 @@ while read package; do
         echo "This is the result: $result\n";
 	fi
 done < packages
-
 workDirectory=""
-if [ -d "$1" ]; then
-    echo "The installation is going to use the directory $1"
-    workDirectory=$1
-else
-    workDirectory="/usr/esquadro"
-    echo "It is going to create the default directory in $workDirectory " 
-    mkdir $workDirectory
-    echo "The directory is created"
+if [ -n "$1" ];
+then
+    ./createDir/createWorkDirectory.sh "$1"
+    $workDirectory=$1
+else 
+    ./createDir/createWorkDirectory.sh
+    $workDirectory="/usr/esquadro/"
 fi
 
-./downloadFiles.sh $workDirectory
+./downloadFiles.sh "$workDirectory"
