@@ -22,22 +22,58 @@
 ##	]			
 ##
 
-import os
+import os, json
 
 METRICS_DIR = "metrics/"
+PROJECT_INFO_FILE = ".esquadro"
 
-# Get path of file cfg
-PATH = os.environ['HOME'] + '/esquadro.list'
+ROOT = os.environ['HOME']
 
+# Get path of file with all projects tracked
+PATH_LIST = ROOT + '/esquadro.list'
+
+# Get info into .esquadro file to setting json of any project
+def get_info(path_project):
+	try:
+		info_file = open(ROOT + path_project + PROJECT_INFO_FILE, 'r')
+	except FileNotFoundError:
+		print("File .esquadro in " + path_project 
+			+ " needs to be created. To more info"
+			+ " see #link")
+
+	# An dictionarie to get informations
+	contents = {}
+	
+	for line in info_file:
+		token = line.split('=')
+		contents[token[0]] = token[1].replace('\n', '')
+	
+	info_file.close()
+
+	return contents
+	
+
+# Get metrics from token
 def get_metrics(token):
-	open(METRICS_DIR + token[0] + '.json', 'a')
+	
 	output = open(METRICS_DIR + token[0] + '.json', 'w')
-	output.write("Something")
+	# Get informations about project
+	info_project = get_info(token[1].replace('\n', ''))
+	
+	# Format to json and write in output
+	info_in_json = json.dumps(info_project)
+	output.write(info_in_json)
+
 	output.close()
 
-esquadro_list = open(PATH)
+try:
+	esquadro_list = open(PATH_LIST)
+except FileNotFoundError:
+	print("File esquadro.list needs to be created!" 
+		+ "To more information see #link")
+
 for project in esquadro_list:
 	# Generate to strings. First is name, second project url
 	token = project.split('=')
 	get_metrics(token)
-
+	print("Metrics was collected from " + token[0])
