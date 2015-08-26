@@ -20,10 +20,10 @@ workDirectory=""
 if [ -n "$1" ];
 then
     ./createDir/createWorkDirectory.sh "$1"
-    $workDirectory=$1
+    workDirectory=$1
 else 
     ./createDir/createWorkDirectory.sh
-    $workDirectory="/usr/esquadro/"
+    workDirectory="/usr/esquadro"
 fi
 
 ./downloadFiles.sh "$workDirectory"
