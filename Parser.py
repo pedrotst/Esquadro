@@ -136,7 +136,6 @@ def metrics_json(path_project):
 
 # Get metrics from token
 def get_metrics(token):	
-	output = open(METRICS_DIR + token[0] + '.json', 'w')
 
 	path_project = token[1].replace('\n', '')
 
@@ -146,6 +145,7 @@ def get_metrics(token):
 	# Format to json and write in output
 	info_in_json = json.dumps(info_project)
 
+	output = open(METRICS_DIR + token[0] + '.json', 'w')
 	# Write informations opening json declaration with
 	# '[' and adding ',' after this block
 	output.write('[' + info_in_json + ',')
@@ -165,6 +165,14 @@ def get_metrics(token):
 
 	output.close()
 
+# Run analizo from HOME path
+def run_analizo(path):
+	# Generate all metrics values
+	print("Getting metrics from " + ROOT + path)
+	absolute_path = ROOT + path.replace('\n', '')
+	print(absolute_path+METRICS_CSV)
+	print("Run " + "analizo metrics -o " + absolute_path + METRICS_CSV + " " + absolute_path)
+	os.system("analizo metrics -o " + absolute_path + METRICS_CSV + " " + absolute_path)
 
 if __name__=="__main__":
 	try:
@@ -177,5 +185,9 @@ if __name__=="__main__":
 	for project in esquadro_list:
 		# Generate to strings. First is name, second project url
 		token = project.split('=')
+
+		run_analizo(token[1])
+
 		get_metrics(token)
+
 		print("Metrics was collected from " + token[0])
