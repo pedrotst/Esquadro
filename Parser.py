@@ -60,65 +60,71 @@ def get_info(path_project):
 
 	return contents
 
-#
+# Append dictonary of metrics in an list of all metrics
 def save_metrics(project_metrics, metrics):
 	project_metrics.append(metrics.copy())
 	metrics.clear()
+
+# For each line they will treat
+def treat_any_line(file_metrics, file_lines, property_by_file):
+	# It is an type of information inside of csv
+	field_names = ('_filename', '_module')
+
+	# Too see if an block was initiate
+	# Block is mark by: --- in an csv of analizo
+	block_open = False
+
+	for line_number in range(0, len(file_lines)):
+		line = file_lines[line_number]
+		
+		if BLOCK_SEPARATOR in line:
+			if block_open:
+				save_metrics(property_by_file, file_metrics)
+			else:
+				block_open = True
+			pass
+		
+		# Yet read!
+		elif NAME_OF_CLASS_INDICATOR in line:
+			pass
+
+		# It is an type of information inside of csv
+		elif field_names[0] in line:
+			# Remove /n
+			name_of_class = file_lines[line_number + 1].replace('\n', '')
+			# Remove indicator
+			name_of_class = name_of_class.replace(NAME_OF_CLASS_INDICATOR, '')
+
+			file_metrics[field_names[0]] = name_of_class
+
+		# It is an type of information inside of csv
+		elif field_names[1] in line:
+			line = line.replace('_module: ', '').replace('\n', '')
+			file_metrics[field_names[1]] = line
+
+		# Metrics only have name and value, separated by ':'
+		else:
+			metric = line.split(':')
+			file_metrics[metric[0]] = float(metric[1].replace('\n', ''))
+			try:
+				file_lines[line_number + 1]
+			except IndexError:
+				property_by_file.append(file_metrics.copy())
+				file_metrics.clear()
+
 
 # Converts an csv file of metrics to json
 def metrics_json(path_project):
 	try:
 		# Have name of file, package and all metrics about
 		property_by_file = []
-		# It is an type of information inside of csv
-		field_names = ('_filename', '_module')
 
 		with open(ROOT + path_project + METRICS_CSV, 'r') as csv_metrics:
 			file_lines = csv_metrics.readlines()
 			file_metrics = {}
 
-			# Too see if an block was initiate
-			# Block is mark by: --- in an csv of analizo
-			block_open = False
-			
-			for line_number in range(0, len(file_lines)):
-				line = file_lines[line_number]
-				
-				if BLOCK_SEPARATOR in line:
-					if block_open:
-						save_metrics(property_by_file, file_metrics)
-					else:
-						block_open = True
-					pass
-				
-				# Yet read!
-				elif NAME_OF_CLASS_INDICATOR in line:
-					pass
+			treat_any_line(file_metrics, file_lines, property_by_file)
 
-				# It is an type of information inside of csv
-				elif field_names[0] in line:
-					# Remove /n
-					name_of_class = file_lines[line_number + 1].replace('\n', '')
-					# Remove indicator
-					name_of_class = name_of_class.replace(NAME_OF_CLASS_INDICATOR, '')
-
-					file_metrics[field_names[0]] = name_of_class
-
-				# It is an type of information inside of csv
-				elif field_names[1] in line:
-					line = line.replace('_module: ', '').replace('\n', '')
-					file_metrics[field_names[1]] = line
-
-				# Metrics only have name and value, separated by ':'
-				else:
-					metric = line.split(':')
-					file_metrics[metric[0]] = float(metric[1].replace('\n', ''))
-					try:
-						file_lines[line_number + 1]
-					except IndexError:
-						property_by_file.append(file_metrics.copy())
-						file_metrics.clear()
-					
 			csv_metrics.close()
 
 		return property_by_file
