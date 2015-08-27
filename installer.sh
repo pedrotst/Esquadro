@@ -2,6 +2,11 @@
 
 apt-get --yes --force-yes  install  wget
 
+
+#configure mysql root password
+root_password="root"
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $root_password"
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $root_password"
 ./installKeys.sh
 
 logFile=/tmp/esquadro.install.log
@@ -27,3 +32,4 @@ else
 fi
 
 ./downloadFiles.sh "$workDirectory"
+./configureBIServer.sh "$workDirectory" "localhost" "3306" "root" "$root_password"
