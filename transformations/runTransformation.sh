@@ -27,7 +27,7 @@ fi
 path_log_file=$(cd $(dirname "$log") && pwd -P)/$(basename "$log")
 
 # Alterar para usar os diretorios onde for instalado o di
-pentahoDirectory="usr/esquadro/data-integration/kitchen.sh"
+pentahoDirectory="needtoalter"
 
 #job="job.kjb"
 command="$pentahoDirectory -file=\"$job\" -level=RowLevel -param:JSON_FILE=\"$path_json_file\" -logfile=\"$path_log_file\""

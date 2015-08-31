@@ -33,3 +33,4 @@ fi
 
 ./downloadFiles.sh "$workDirectory"
 ./configureBIServer.sh "$workDirectory" "localhost" "3306" "root" "$root_password"
+./configureTransformations/configureTransformations.sh "$workDirectory" "transformations"
