@@ -26,6 +26,7 @@ import os
 import csv
 import json
 import sys
+import services
 
 METRICS_DIR = "metrics/"
 PROJECT_INFO_FILE = ".esquadro"
@@ -165,15 +166,6 @@ def get_metrics(token):
 
 	output.close()
 
-# Run analizo from HOME path
-def run_analizo(path):
-	# Generate all metrics values
-	print("Getting metrics from " + ROOT + path)
-	absolute_path = ROOT + path.replace('\n', '')
-	print(absolute_path+METRICS_CSV)
-	print("Run " + "analizo metrics -o " + absolute_path + METRICS_CSV + " " + absolute_path)
-	os.system("analizo metrics -o " + absolute_path + METRICS_CSV + " " + absolute_path)
-
 if __name__=="__main__":
 	try:
 		esquadro_list = open(PATH_LIST)
@@ -186,7 +178,7 @@ if __name__=="__main__":
 		# Generate to strings. First is name, second project url
 		token = project.split('=')
 
-		run_analizo(token[1])
+		services.run_analizo(token[1], METRICS_CSV)
 
 		get_metrics(token)
 
