@@ -23,7 +23,7 @@ echo "Creating databases of BIserver..."
 mysql -h $host_mysql -P $port_mysql -u root -proot < "$workDirectory/biserver-ce/data/mysql5/create_jcr_mysql.sql"
 mysql -h $host_mysql -P $port_mysql -u root -proot < "$workDirectory/biserver-ce/data/mysql5/create_quartz_mysql.sql"
 mysql -h $host_mysql -P $port_mysql -u root -proot < "$workDirectory/biserver-ce/data/mysql5/create_repository_mysql.sql"
-
+mysql -h $host_mysql -P $port_mysql -u root -proot < "$workDirectory/transformations/createdb.sql"
 echo "The Databases required was created!"
 
 echo "Copy files required by biserver with right configuration..."
