@@ -37,7 +37,7 @@ NAME_OF_CLASS_INDICATOR = '  - '
 ROOT = os.environ['HOME']
 
 # Get path of file with all projects tracked
-PATH_LIST = ROOT + '/esquadro.list'
+PATH_LIST = ROOT + '/esquadro.map'
 
 # Get info into .esquadro file to setting json of any project
 def get_info(path_project):
