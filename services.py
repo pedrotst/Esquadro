@@ -1,3 +1,5 @@
+## This module have methods that works with external applications
+
 import os
 
 # Get root directory
