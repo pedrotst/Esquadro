@@ -1,10 +1,14 @@
 #!/bin/sh
+
 tmpFile=/tmp/libKeyfile
+
 while read line; do
 	echo $line>"$tmpFile";
+	
 	key=$(cut -d" " -f1 < "$tmpFile");
 	packege=$(cut -d" " -f2 < "$tmpFile");
-        if  apt-key list | grep  "$key">/dev/null;
+        
+	if  apt-key list | grep  "$key">/dev/null;
         then
                 echo "The $key of the packege: $packege is already added";
         else
@@ -13,5 +17,4 @@ while read line; do
 
 	rm "$tmpFile"
 done < keys
-                
 

@@ -75,11 +75,11 @@
   </notepads>
   <connection>
     <name>source_info</name>
-    <server>localhost</server>
+    <server>126.0.0.1</server>
     <type>MYSQL</type>
     <access>Native</access>
     <database>source_info</database>
-    <port>3306</port>
+    <port>5000</port>
     <username>root</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ce10cc9da0ce</password>
     <servername/>
