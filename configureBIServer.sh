@@ -1,39 +1,51 @@
 #/usr/sh
 
-#BIServer is located in back folder
+########################## ABOUT #############################
+#
+# This script configure BIServer and database(MYSQL for hour)
+#
+##############################################################
 
-#Set properties of user
+# Try get 5 arguments to configure data integration, they
+# are essential to run mysql, so if you don't entry with 5 arguments:
+# YOU SHALL NOT PASS!
 
-#Set properties of user
-host=$HOST_MYSQL
-port=$PORT_MYSQL
+if [ "$#" -eq 5 ];
+then
+	# Directory where is installed Esquadro
+	WORK_DIR=$1
+	HOST_DB=$2
+	PORT_DB=$3
+	USER_DB=$4
+	PASSWORD_DB=$5
+else
+	echo "It is needed 5 arguments... Please try again!"
+	exit 0;
+fi
+
+# The follow scripts will create basic settings.
+# The last sql will generate an basic schemma to an database OLAP
 
 echo "Creating databases of BIserver..."
 
-#Try create this tables
-biserverdiretorio=$DIR_BI_SERVER
-host=$HOST_MYSQL
-port=$PORT_MYSQL
+mysql -h $HOST_DB -P $PORT_DB -u $USER_DB -p$PASSWORD_DB < "$WORK_DIR/biserver-ce/data/mysql5/create_jcr_mysql.sql"
+mysql -h $HOST_DB -P $PORT_DB -u $USER_DB -p$PASSWORD_DB < "$WORK_DIR/biserver-ce/data/mysql5/create_quartz_mysql.sql"
+mysql -h $HOST_DB -P $PORT_DB -u $USER_DB -p$PASSWORD_DB < "$WORK_DIR/biserver-ce/data/mysql5/create_repository_mysql.sql"
+mysql -h $HOST_DB -P $PORT_DB -u $USER_DB -p$PASSWORD_DB < "$WORK_DIR/transformations/createdb.sql"
 
-echo "Creating databases of BIserver..."
-
-#Try create this tables
-mysql -h $host -P $port -u root -proot < "biserver-ce/data/mysql5/create_jcr_mysql.sql"
-mysql -h $host -P $port -u root -proot < "biserver-ce/data/mysql5/create_quartz_mysql.sql"
-mysql -h $host -P $port -u root -proot < "biserver-ce/data/mysql5/create_repository_mysql.sql"
-
-echo "The Databases required was created!"
+echo "Database was created!"
 
 echo "Copy files required by biserver with right configuration..."
 
-files_cfg="scripts/filesToConfigureMYSQL/"
+# Copy new files, with right configuration!
+# BIServer needs some settings to run with MYSQL, so the follow archives copy this
+FILES_CONFIG="filesToConfigureMYSQL"
 
-#Copy new files, with right configuration
-cp "$files_cfg/context.xml" "/biserver-ce/tomcat/webapps/pentaho/META-INF/"
-cp "$files_cfg/applicationContext-spring-security-hibernate.properties" "/biserver-ce/pentaho-solutions/system/"
-cp "$files_cfg/hibernate-settings.xml" "/biserver-ce/pentaho-solutions/system/hibernate/"
-cp "$files_cfg/mysql5.hibernate.cfg.xml" "/biserver-ce/pentaho-solutions/system/hibernate/"
-cp "$files_cfg/quartz.properties" "/biserver-ce/pentaho-solutions/system/quartz/"
-cp "$files_cfg/repository.xml" "biserver-ce/pentaho-solutions/system/jackrabbit/"
+cp "$FILES_CONFIG/context.xml" "$WORK_DIR/biserver-ce/tomcat/webapps/pentaho/META-INF/"
+cp "$FILES_CONFIG/applicationContext-spring-security-hibernate.properties" "$WORK_DIR/biserver-ce/pentaho-solutions/system/"
+cp "$FILES_CONFIG/hibernate-settings.xml" "$WORK_DIR/biserver-ce/pentaho-solutions/system/hibernate/"
+cp "$FILES_CONFIG/mysql5.hibernate.cfg.xml" "$WORK_DIR/biserver-ce/pentaho-solutions/system/hibernate/"
+cp "$FILES_CONFIG/quartz.properties" "$WORK_DIR/biserver-ce/pentaho-solutions/system/quartz/"
+cp "$FILES_CONFIG/repository.xml" "$WORK_DIR/biserver-ce/pentaho-solutions/system/jackrabbit/"
 
 echo "Copy success!"

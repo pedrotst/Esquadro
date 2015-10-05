@@ -13,7 +13,7 @@ fi
 
 while IFS=' ' read -r filename url
 do
-    filename="$workDirectory/$filename"
+    #filename="$workDirectory/$filename"
 	echo "File to download - $filename"
 	echo "File url - $url"
     
@@ -21,7 +21,7 @@ do
 	wget -O	$filename $url
 
 	#Extract file
-	unzip $filename
+	unzip $filename -d "$workDirectory"
 
 	#Remove zip
 	rm $filename -f

@@ -1,8 +1,16 @@
 #!/bin/sh
 
+apt-get --yes --force-yes  install  wget
+
+#configure mysql root password
+root_password="root"
+
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $root_password"
+sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $root_password"
+
 ./installKeys.sh
 
-logFile=/tmp/esquadro/install.log
+logFile=/tmp/esquadro.install.log
 
 while read package; do
 	if  dpkg -s "$package" 2>/dev/null | grep  "Status: install ok installed">/dev/null;
@@ -16,14 +24,15 @@ while read package; do
 done < packages
 
 workDirectory=""
-if [ -d "$1" ]; then
-    echo "The installation is going to use the directory $1"
+if [ -n "$1" ];
+then
+    ./createDir/createWorkDirectory.sh "$1"
     workDirectory=$1
 else
+    ./createDir/createWorkDirectory.sh
     workDirectory="/usr/esquadro"
-    echo "It is going to create the default directory in $workDirectory " 
-    mkdir $workDirectory
-    echo "The directory is created"
 fi
 
-./downloadFiles.sh $workDirectory
+./downloadFiles.sh "$workDirectory"
+./configureTransformations/configureTransformations.sh "$workDirectory" "transformations"
+./configureBIServer.sh "$workDirectory" "127.0.0.1" "5000" "root" "$root_password"
