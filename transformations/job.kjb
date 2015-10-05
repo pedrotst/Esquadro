@@ -83,11 +83,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>78</xloc>
+      <xloc>73</xloc>
       <yloc>53</yloc>
       </entry>
     <entry>
-      <name>An&#xe1;lise dos Valores Percentis</name>
+      <name>Analyze of percentiles values</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -116,11 +116,11 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>507</xloc>
-      <yloc>54</yloc>
+      <xloc>508</xloc>
+      <yloc>53</yloc>
       </entry>
     <entry>
-      <name>Dados do Projeto</name>
+      <name>Project Data</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -186,7 +186,7 @@
       <yloc>53</yloc>
       </entry>
     <entry>
-      <name>An&#xe1;lise dos Cen&#xe1;rios de Limpeza de C&#xf3;digo-Fonte</name>
+      <name>Analysis of source code cleanup scenarios</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -215,8 +215,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>790</xloc>
-      <yloc>54</yloc>
+      <xloc>795</xloc>
+      <yloc>53</yloc>
       </entry>
     <entry>
       <name>Set variables</name>
@@ -241,8 +241,8 @@
   </entries>
   <hops>
     <hop>
-      <from>Dados do Projeto</from>
-      <to>An&#xe1;lise dos Valores Percentis</to>
+      <from>Project Data</from>
+      <to>Analyze of percentiles values</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -250,8 +250,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>An&#xe1;lise dos Valores Percentis</from>
-      <to>An&#xe1;lise dos Cen&#xe1;rios de Limpeza de C&#xf3;digo-Fonte</to>
+      <from>Analyze of percentiles values</from>
+      <to>Analysis of source code cleanup scenarios</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -269,7 +269,7 @@
     </hop>
     <hop>
       <from>Set variables</from>
-      <to>Dados do Projeto</to>
+      <to>Project Data</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

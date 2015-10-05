@@ -103,11 +103,11 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Obtendo M&#xe9;tricas</from><to>Inserindo nas Dim Classe</to><enabled>Y</enabled> </hop>
-  <hop> <from>Inserindo nas Dim Classe</from><to>Inserindo os Fatos na F_Scenario_Code e F_Scenario_Rate</to><enabled>Y</enabled> </hop>
+  <hop> <from>Getting metrics</from><to>Inserting in dimension classe</to><enabled>Y</enabled> </hop>
+  <hop> <from>Inserting in dimension classe</from><to>Inserting Facts in F_Scenario_Code e F_Scenario_Rate</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Inserindo nas Dim Classe</name>
+    <name>Inserting in dimension classe</name>
     <type>CombinationLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -141,14 +141,14 @@
       <last_update_field/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>265</xloc>
+      <xloc>302</xloc>
       <yloc>41</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Inserindo os Fatos na F_Scenario_Code e F_Scenario_Rate</name>
+    <name>Inserting Facts in F_Scenario_Code e F_Scenario_Rate</name>
     <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
@@ -199,7 +199,7 @@
     </arguments>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>536</xloc>
+      <xloc>600</xloc>
       <yloc>41</yloc>
       <draw>Y</draw>
       </GUI>
@@ -314,7 +314,7 @@
     </step>
 
   <step>
-    <name>Obtendo M&#xe9;tricas</name>
+    <name>Getting metrics</name>
     <type>JsonInput</type>
     <description/>
     <distribute>N</distribute>

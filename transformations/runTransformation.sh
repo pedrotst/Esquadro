@@ -56,7 +56,8 @@ LOG_FILE_DIR="$LOG_FILE_DIR $LOG_FILE"
 
 KITCHEN_DIR="/usr/esquadro/data-integration/kitchen.sh"
  
-JOB_FILE="/usr/esquadro/transformations/job.kjb"
+#JOB_FILE="/usr/esquadro/transformations/job.kjb"
+JOB_FILE="/home/pwener/Esquadro/esquadro/transformations/job.kjb"
 
 COMMAND="$KITCHEN_DIR -file="$JOB_FILE" -level=RowLevel -param:JSON_FILE="$JSON_FILE_DIR" -logfile="$LOG_FILE_DIR""
 

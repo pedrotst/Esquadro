@@ -103,12 +103,12 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Obtendo M&#xe9;tricas</from><to>Calculando os Percentis</to><enabled>Y</enabled> </hop>
-  <hop> <from>Calculando os Percentis</from><to>Convertendo Valores</to><enabled>Y</enabled> </hop>
-  <hop> <from>Convertendo Valores</from><to>Inserindo os Fatos na F_Project_Metric</to><enabled>Y</enabled> </hop>
+  <hop> <from>Getting metrics</from><to>Calculating percentiles</to><enabled>Y</enabled> </hop>
+  <hop> <from>Calculating percentiles</from><to>Convert values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Convert values</from><to>Inserting Facts in F_Project_Metric</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Calculando os Percentis</name>
+    <name>Calculating percentiles</name>
     <type>UnivariateStats</type>
     <description/>
     <distribute>Y</distribute>
@@ -247,7 +247,7 @@
     </step>
 
   <step>
-    <name>Convertendo Valores</name>
+    <name>Convert values</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -495,7 +495,7 @@
     </step>
 
   <step>
-    <name>Inserindo os Fatos na F_Project_Metric</name>
+    <name>Inserting Facts in F_Project_Metric</name>
     <type>ExecSQL</type>
     <description/>
     <distribute>Y</distribute>
@@ -599,7 +599,7 @@
     </step>
 
   <step>
-    <name>Obtendo M&#xe9;tricas</name>
+    <name>Getting metrics</name>
     <type>JsonInput</type>
     <description/>
     <distribute>Y</distribute>

@@ -103,12 +103,12 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Obtendo dados do Projeto</from><to>Inserindo na Dim Projeto</to><enabled>Y</enabled> </hop>
-  <hop> <from>Obtendo dados do Projeto</from><to>Inserindo na Dim Release</to><enabled>Y</enabled> </hop>
-  <hop> <from>Obtendo dados do Projeto</from><to>Inserindo na Dim Tempo</to><enabled>Y</enabled> </hop>
+  <hop> <from>Getting project data</from><to>Inserting Project dimension</to><enabled>Y</enabled> </hop>
+  <hop> <from>Getting project data</from><to>Inserting Release dimension</to><enabled>Y</enabled> </hop>
+  <hop> <from>Getting project data</from><to>Inserting Time dimension</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Inserindo na Dim Projeto</name>
+    <name>Inserting Project dimension</name>
     <type>CombinationLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -154,14 +154,14 @@
       <last_update_field/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>331</xloc>
-      <yloc>34</yloc>
+      <xloc>333</xloc>
+      <yloc>33</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Inserindo na Dim Release</name>
+    <name>Inserting Release dimension</name>
     <type>CombinationLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -206,7 +206,7 @@
     </step>
 
   <step>
-    <name>Inserindo na Dim Tempo</name>
+    <name>Inserting Time dimension</name>
     <type>CombinationLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -244,14 +244,14 @@
       <last_update_field/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>113</xloc>
-      <yloc>225</yloc>
+      <xloc>114</xloc>
+      <yloc>226</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Obtendo dados do Projeto</name>
+    <name>Getting project data</name>
     <type>JsonInput</type>
     <description/>
     <distribute>N</distribute>

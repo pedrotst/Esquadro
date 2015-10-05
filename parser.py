@@ -68,8 +68,8 @@ def save_metrics(project_metrics, metrics):
 
 # For each line they will treat
 def treat_any_line(file_metrics, file_lines, property_by_file):
-	# It is an type of information inside of csv
-	field_names = ('_filename', '_module')
+	# It is an type of information inside csv file
+	field_names = ('_filename', '_module: ')
 
 	# Too see if an block was initiate
 	# Block is mark by: --- in an csv of analizo
@@ -96,12 +96,13 @@ def treat_any_line(file_metrics, file_lines, property_by_file):
 			# Remove indicator
 			name_of_class = name_of_class.replace(NAME_OF_CLASS_INDICATOR, '')
 
-			file_metrics[field_names[0]] = name_of_class
+			file_metrics['filename'] = name_of_class
 
 		# It is an type of information inside of csv
 		elif field_names[1] in line:
+			# Removes underscore and breakline
 			line = line.replace('_module: ', '').replace('\n', '')
-			file_metrics[field_names[1]] = line
+			file_metrics['module'] = line
 
 		# Metrics only have name and value, separated by ':'
 		else:
