@@ -103,12 +103,12 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Getting metrics</from><to>Calculating percentiles</to><enabled>Y</enabled> </hop>
-  <hop> <from>Calculating percentiles</from><to>Convert values</to><enabled>Y</enabled> </hop>
-  <hop> <from>Convert values</from><to>Inserting Facts in F_Project_Metric</to><enabled>Y</enabled> </hop>
+  <hop> <from>Getting metrics</from><to>Calculating Percentiles</to><enabled>Y</enabled> </hop>
+  <hop> <from>Calculating Percentiles</from><to>Converting values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Converting values</from><to>Inserting Facts in F_Project_Metric</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Calculating percentiles</name>
+    <name>Calculating Percentiles</name>
     <type>UnivariateStats</type>
     <description/>
     <distribute>Y</distribute>
@@ -247,7 +247,7 @@
     </step>
 
   <step>
-    <name>Convert values</name>
+    <name>Converting values</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -488,7 +488,7 @@
         <storage_type/>
       </meta>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>477</xloc>
+      <xloc>462</xloc>
       <yloc>105</yloc>
       <draw>Y</draw>
       </GUI>
@@ -592,7 +592,7 @@
     </arguments>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>684</xloc>
+      <xloc>718</xloc>
       <yloc>105</yloc>
       <draw>Y</draw>
       </GUI>
