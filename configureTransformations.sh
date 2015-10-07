@@ -1,17 +1,39 @@
 #!/bin/bash
 
-if [ ! -n "$1" ] && [ ! -n "$2" ]
+#######################################################################################
+#
+# IMPORTANT!!!
+# 
+# This script will change the variable $JOB_FILE which belongs to runTransformation.sh,
+# installed by default in /usr/esquadro/transformations/. So this script only is
+# necessary if esquadro was installed in other directory.
+#
+#######################################################################################
+
+# To run this, is necessary one argument, 
+# WORK_DIR(Where esquadro is installed)
+
+if [ ! -n "$1" ]
 then
-    echo "It needs two argument"
+    echo "Oops! Please insert where esquadro is installed..."
     exit
 fi
 
 WORK_DIR="$1"
 
-echo $WORK_DIR
+# Remove last slashes
+WORK_DIR=${1%/}
 
-cp -r "$2" "$WORK_DIR"
 
-sed -i "/job=\"job.kjb\"/c\job=\"$WORK_DIR/transformations/job.kjb\"" "$WORK_DIR/transformations/runTransformation.sh"
 
-sed -i "/pentahoDirectory=\"needtoalter\"/c\pentahoDirectory=\"$WORK_DIR/data-integration/kitchen.sh\"" "$WORK_DIR/transformations/runTransformation.sh"
+# The follow lines set inside runTransformation.sh where is job.kjb and kitchen.sh .
+# To more info about syntax line, execute: man see, in terminal. About files and directories
+# see runTransformations.sh
+
+CURRENT_SCRIPT="$WORK_DIR/transformations/runTransformation.sh"
+
+sed -i "/JOB_FILE=\"/usr/esquadro/transformations/job.kjb\"/c\JOB_FILE=\$WORK_DIR/transformations/job.kjb\"" "$WORK_DIR/transformations/runTransformation.sh"
+
+#sed -i "/KITCHEN_DIR=\"$DEFAULT_DIR/data-integration/kitchen.sh\"/c\KITCHEN_DIR=\"$WORK_DIR/data-integration/kitchen.sh\"" $CURRENT_SCRIPT
+
+# END

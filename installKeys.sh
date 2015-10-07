@@ -18,4 +18,3 @@ echo "deb http://www.vps.fmvz.usp.br/CRAN/bin/linux/ubuntu trusty/">>"$pathToSou
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 
 wget -O - http://www.analizo.org/download/signing-key.asc | apt-key add -
-

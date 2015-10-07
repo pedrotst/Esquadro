@@ -19,7 +19,7 @@ if [ ! -e $JSON_FILE ]; then
 	exit 0
 fi
 
-# Get absolut path of json file which have metrics about certain project 
+# Get absolut path of json file which have metrics about certain project
 # with right properties defined in .esquadro.map
 
 JSON_FILE_DIR=$(cd $(dirname "$JSON_FILE") && pwd -P)/$(basename "$JSON_FILE")
@@ -37,7 +37,7 @@ if [ ! -e $LOG_FILE ]; then
 	echo "Created..."
 fi
 
-# Get absolut path of LOG_FILE, that will be used by 
+# Get absolut path of LOG_FILE, that will be used by
 # data-integration in your call, made below
 
 LOG_FILE_DIR=$(cd $(dirname "$LOG_FILE") && pwd -P)/$(basename "$LOG_FILE")
@@ -51,13 +51,12 @@ LOG_FILE_DIR="$LOG_FILE_DIR $LOG_FILE"
 # @@@@ IT CAN BE CHANGE TO RELATIVE PATH
 # Directory of pentaho script that run dataintegration.
 #
-# Second pentaho documentation: Kitchen is a program that can 
+# Second pentaho documentation: Kitchen is a program that can
 # execute jobs designed by Spoon in XML or in a database repository.
 
 KITCHEN_DIR="/usr/esquadro/data-integration/kitchen.sh"
- 
-#JOB_FILE="/usr/esquadro/transformations/job.kjb"
-JOB_FILE="/home/pwener/Esquadro/esquadro/transformations/job.kjb"
+
+JOB_FILE="/usr/esquadro/transformations/job.kjb"
 
 COMMAND="$KITCHEN_DIR -file="$JOB_FILE" -level=RowLevel -param:JSON_FILE="$JSON_FILE_DIR" -logfile="$LOG_FILE_DIR""
 
