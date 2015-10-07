@@ -78,6 +78,7 @@ done < packages
 
 # Run other configuration scripts
 # Set folder of esquadro with pentaho tools and transformations folder
+mkdir $WORK_DIR
 
 # download pentaho data-integration and bi-server
 ./downloadFiles.sh $WORK_DIR
@@ -86,3 +87,6 @@ done < packages
 ./configureTransformations/configureTransformations.sh $WORK_DIR
 
 ./configureBIServer.sh $WORK_DIR $HOST_DATABASE $HOST_PORT $DATABASE_USER $DATABASE_PASSWORD
+
+exit 0
+# END

@@ -23,7 +23,6 @@ fi
 WORK_DIR=${1%/}
 
 # install transformations
-mkdir $WORK_DIR
 cp -avr transformations $WORK_DIR
 
 # The follow lines set inside runTransformation.sh where is job.kjb and kitchen.sh .
