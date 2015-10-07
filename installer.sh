@@ -11,7 +11,10 @@
 function help {
 		echo "This script install and configure Esquadro and your dependencies"
 		echo -e \\n "Arguments:"
-		echo -e "-p \t Password of Mysql-server"
+		echo -e "-s \t Host database, default is localhost"
+		echo -e "-P \t Port used by database, default is 3306"
+		echo -e "-u \t Username of database"
+		echo -e "-p \t Password of database"
 		echo -e "-d \t Directory where will be installed"
 		echo -e "-h or --help \t This guide"
 		exit 1
@@ -27,22 +30,30 @@ apt-get --yes --force-yes  install  wget
 LOG_FILE=/tmp/esquadro.install.log
 
 # Default database informations
-ROOT_PASSWORD="root"
-HOST_DATABASE="localhost"
-HOST_PORT="3306"
+DATABASE_HOST="localhost"
+DATABASE_HOST_PORT="3306"
 DATABASE_USER="root"
 DATABASE_PASSWORD="root"
 
 # Default instalation directory is /usr/esquadro
 WORK_DIR=/usr/esquadro
 
-while getopts ":d:p:h" option; do
+while getopts ":s:P:u:p:d:h:" option; do
 	case $option in
-		d) # Set directory
-			WORK_DIR=$OPTARG
+		s) # set database host
+			DATABASE_HOST=$OPTARG
+			;;
+		P) # Set host port
+			DATABASE_HOST_PORT=$OPTARG
+			;;
+		u) # Set database user
+			DATABASE_USER=$OPTARG
 			;;
 		p) # Set root password
 			DATABASE_PASSWORD=$OPTARG
+			;;
+		d) # Set directory
+			WORK_DIR=$OPTARG
 			;;
 		h) # Simple manual
 			help
@@ -86,7 +97,7 @@ mkdir $WORK_DIR
 # Create an environment variable to set directory of runTransformation.sh
 ./configureTransformations/configureTransformations.sh $WORK_DIR
 
-./configureBIServer.sh $WORK_DIR $HOST_DATABASE $HOST_PORT $DATABASE_USER $DATABASE_PASSWORD
+./configureBIServer.sh $WORK_DIR $DATABASE_HOST $DATABASE_HOST_PORT $DATABASE_USER $DATABASE_PASSWORD
 
 exit 0
 # END
