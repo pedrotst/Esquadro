@@ -49,14 +49,18 @@ LOG_FILE_DIR="$LOG_FILE_DIR $LOG_FILE"
 
 
 # @@@@ IT CAN BE CHANGE TO RELATIVE PATH
-# Directory of pentaho script that run dataintegration.
+# Directory of pentaho script that will run dataintegration.
 #
 # Second pentaho documentation: Kitchen is a program that can
 # execute jobs designed by Spoon in XML or in a database repository.
 
-KITCHEN_DIR="/usr/esquadro/data-integration/kitchen.sh"
+# Default directory, see script that can change this:
+# configureTransformations.sh
+WORK_DIR=/usr/esquadro
 
-JOB_FILE="/usr/esquadro/transformations/job.kjb"
+KITCHEN_DIR=$WORK_DIR/data-integration/kitchen.sh
+
+JOB_FILE=$WORK_DIR/transformations/job.kjb
 
 COMMAND="$KITCHEN_DIR -file="$JOB_FILE" -level=RowLevel -param:JSON_FILE="$JSON_FILE_DIR" -logfile="$LOG_FILE_DIR""
 
@@ -66,3 +70,5 @@ echo "$COMMAND"
 eval "$COMMAND"
 
 # END
+
+exit 0

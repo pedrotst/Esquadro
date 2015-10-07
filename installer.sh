@@ -77,9 +77,12 @@ while read package; do
 done < packages
 
 # Run other configuration scripts
-./downloadFiles.sh "$WORK_DIR"
+# Set folder of esquadro with pentaho tools and transformations folder
 
-# Create an environment variable to set directory of runTransformations.sh
+# download pentaho data-integration and bi-server
+./downloadFiles.sh $WORK_DIR
+
+# Create an environment variable to set directory of runTransformation.sh
 ./configureTransformations/configureTransformations.sh $WORK_DIR
 
-./configureBIServer.sh "$WORK_DIR" $HOST_DATABASE $HOST_PORT $DATABASE_USER $DATABASE_PASSWORD
+./configureBIServer.sh $WORK_DIR $HOST_DATABASE $HOST_PORT $DATABASE_USER $DATABASE_PASSWORD
