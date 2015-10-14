@@ -33,6 +33,3 @@ CURRENT_SCRIPT="$WORK_DIR/transformations/runTransformation.sh"
 
 # Set work directory of esquadro in runTransformation script
 sed -i "s,WORK_DIR=/usr/esquadro,WORK_DIR=$WORK_DIR,g" $CURRENT_SCRIPT
-
-# END
-exit 0

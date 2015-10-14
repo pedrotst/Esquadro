@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ###############################################
 #
@@ -10,7 +10,7 @@
 # Basic informations to run this script
 function help {
 		echo "This script install and configure Esquadro and your dependencies"
-		echo -e \\n "Arguments:"
+		echo -e "\nArguments:"
 		echo -e "-s \t Host database, default is localhost"
 		echo -e "-P \t Port used by database, default is 3306"
 		echo -e "-u \t Username of database"
@@ -95,7 +95,7 @@ mkdir $WORK_DIR
 ./downloadFiles.sh $WORK_DIR
 
 # Create an environment variable to set directory of runTransformation.sh
-./configureTransformations/configureTransformations.sh $WORK_DIR
+./configureTransformations.sh $WORK_DIR
 
 ./configureBIServer.sh $WORK_DIR $DATABASE_HOST $DATABASE_HOST_PORT $DATABASE_USER $DATABASE_PASSWORD
 
