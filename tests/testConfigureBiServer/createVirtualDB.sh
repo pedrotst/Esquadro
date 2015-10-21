@@ -30,6 +30,6 @@ then
 fi 
 
 rm $PWD/dbs
+
 docker stop mysqltest
 docker rm mysqltest
-
