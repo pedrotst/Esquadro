@@ -20,12 +20,6 @@ function help {
 		exit 1
 }
 
-# Force instalation of wget
-apt-get --yes --force-yes  install  wget
-
-# Configure source code
-./installKeys.sh
-
 # Default file archieving instalation's log
 LOG_FILE=/tmp/esquadro.install.log
 
@@ -38,7 +32,7 @@ DATABASE_PASSWORD="root"
 # Default instalation directory is /usr/esquadro
 WORK_DIR=/usr/esquadro
 
-while getopts ":s:P:u:p:d:h:" option; do
+while getopts ":s:P:u:p:d:h" option; do
 	case $option in
 		s) # set database host
 			DATABASE_HOST=$OPTARG
@@ -66,6 +60,12 @@ while getopts ":s:P:u:p:d:h:" option; do
 	esac
 done
 
+# Force instalation of wget
+apt-get --yes --force-yes  install  wget
+
+# Configure source code
+./installKeys.sh
+
 # @Deprecated why esquadro should install mysql?
 #
 # Creating a preconfigurating file to instalation of mysql
@@ -81,9 +81,9 @@ while read package; do
 	then
 		echo "$package is already installed";
 	else
-		echo "Installing $package\n";
+		echo "Installing $package";
 		RESULT=$(apt-get --yes --force-yes  install "$package" >>"$LOG_FILE");
-        echo "This is the result: $RESULT\n";
+        echo "This is the result: $RESULT";
 	fi
 done < packages
 
