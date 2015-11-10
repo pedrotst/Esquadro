@@ -31,7 +31,7 @@ echo "Creating databases of BIserver..."
 mysql -h $HOST_DB -P $PORT_DB -u $USER_DB -p$PASSWORD_DB < "$WORK_DIR/biserver-ce/data/mysql5/create_jcr_mysql.sql"
 mysql -h $HOST_DB -P $PORT_DB -u $USER_DB -p$PASSWORD_DB < "$WORK_DIR/biserver-ce/data/mysql5/create_quartz_mysql.sql"
 mysql -h $HOST_DB -P $PORT_DB -u $USER_DB -p$PASSWORD_DB < "$WORK_DIR/biserver-ce/data/mysql5/create_repository_mysql.sql"
-mysql -h $HOST_DB -P $PORT_DB -u $USER_DB -p$PASSWORD_DB < "$WORK_DIR/transformations/createdb.sql"
+mysql -h $HOST_DB -P $PORT_DB -u $USER_DB -p$PASSWORD_DB < "$WORK_DIR/biserver-ce/createdb.sql"
 
 echo "Database was created!"
 
