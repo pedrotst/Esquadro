@@ -45,4 +45,4 @@ cp "$FILES_CONFIG/mysql5.hibernate.cfg.xml" "$WORK_DIR/biserver-ce/pentaho-solut
 cp "$FILES_CONFIG/quartz.properties" "$WORK_DIR/biserver-ce/pentaho-solutions/system/quartz/"
 cp "$FILES_CONFIG/repository.xml" "$WORK_DIR/biserver-ce/pentaho-solutions/system/jackrabbit/"
 
-echo "Copy success!"
+echo "Finish..."
