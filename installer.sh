@@ -99,5 +99,8 @@ mkdir $WORK_DIR
 
 ./configureBIServer.sh $WORK_DIR $DATABASE_HOST $DATABASE_HOST_PORT $DATABASE_USER $DATABASE_PASSWORD
 
+## To concede permission in all folder
+##find . -type f -iname '*.sh' -exec chmod a+x {} \;
+
 exit 0
 # END
