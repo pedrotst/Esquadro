@@ -36,13 +36,17 @@ echo "Copy files required by biserver with right configuration..."
 
 # Copy new files, with right configuration!
 # BIServer needs some settings to run with MYSQL, so the follow archives copy this
-FILES_CONFIG="filesToConfigurePostgreSQL"
+FILES_CONFIG=filesToConfigurePostgreSQL
 
-cp "$FILES_CONFIG/context.xml" "$WORK_DIR/biserver-ce/tomcat/webapps/pentaho/META-INF/"
-cp "$FILES_CONFIG/applicationContext-spring-security-hibernate.properties" "$WORK_DIR/biserver-ce/pentaho-solutions/system/"
-cp "$FILES_CONFIG/hibernate-settings.xml" "$WORK_DIR/biserver-ce/pentaho-solutions/system/hibernate/"
-cp "$FILES_CONFIG/mysql5.hibernate.cfg.xml" "$WORK_DIR/biserver-ce/pentaho-solutions/system/hibernate/"
-cp "$FILES_CONFIG/quartz.properties" "$WORK_DIR/biserver-ce/pentaho-solutions/system/quartz/"
-cp "$FILES_CONFIG/repository.xml" "$WORK_DIR/biserver-ce/pentaho-solutions/system/jackrabbit/"
+# Folder of biserver
+BISERVER_DIR=$WORK_DIR/biserver-ce
+
+cp -avr $FILES_CONFIG/context.xml $BISERVER_DIR/tomcat/webapps/pentaho/META-INF/
+cp -avr $FILES_CONFIG/applicationContext-spring-security-hibernate.properties $BISERVER_DIR/pentaho-solutions/system/
+cp -avr $FILES_CONFIG/hibernate-settings.xml $BISERVER_DIR/pentaho-solutions/system/hibernate/
+cp -avr $FILES_CONFIG/postgresql.hibernate.cfg.xml $BISERVER_DIR/pentaho-solutions/system/hibernate/
+cp -avr $FILES_CONFIG/quartz.properties $BISERVER_DIR/pentaho-solutions/system/quartz/
+cp -avr $FILES_CONFIG/repository.xml $BISERVER_DIR/pentaho-solutions/system/jackrabbit/
+cp -avr $FILES_CONFIG/workspace.xml $BISERVER_DIR/pentaho-solutions/system/jackrabbit/repository/workspaces/default/
 
 echo "Finish..."
