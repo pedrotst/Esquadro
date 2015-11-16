@@ -23,12 +23,21 @@ else
 	exit 0;
 fi
 
+# Locate of postgres sqls
+POSTGRES_CFG_DIR=biserver-ce/data/postgresql
+
 # The follow scripts will create basic settings.
 # The last sql will generate an basic schemma to an database OLAP
-echo "Creating databases of BIserver..."
-psql source_info -f $WORK_DIR/biserver-ce/data/postgresql/create_jcr_postgresql.sql
-psql source_info -f $WORK_DIR/biserver-ce/data/postgresql/create_quartz_postgresql.sql
-psql source_info -f $WORK_DIR/biserver-ce/data/postgresql/create_repository_postgresql.sql
+#
+# The following sql files have UTF-8 encoding that can not be supported by
+# some systems. To resolve this, it's need remove or change encoding,
+# entering into the folder linked by $POSTGRES_CFG_DIR.
+
+echo "Performing the necessary files sqls..."
+
+psql -U postgres -f $WORK_DIR/$POSTGRES_CFG_DIR/create_jcr_postgresql.sql
+psql -U postgres -f $WORK_DIR/$POSTGRES_CFG_DIR/create_quartz_postgresql.sql
+psql -U postgres -f $WORK_DIR/$POSTGRES_CFG_DIR/create_repository_postgresql.sql
 
 echo "Database was created!"
 
