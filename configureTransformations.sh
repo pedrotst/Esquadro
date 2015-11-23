@@ -33,3 +33,8 @@ CURRENT_SCRIPT="$WORK_DIR/transformations/runTransformation.sh"
 
 # Set work directory of esquadro in runTransformation script
 sed -i "s,WORK_DIR=/usr/esquadro,WORK_DIR=$WORK_DIR,g" $CURRENT_SCRIPT
+
+# Esquadro run transformations
+# Shortcut to run with root...
+# Example: esquadrort /home/user/metafisica.json LOG_FILE
+alias esquadrort='$WORK_DIR/transformations/./runTransformation.sh'
