@@ -14,7 +14,7 @@ JSON_FILE="$1"
 
 # Verify if archive JSON exist.
 
-if [ ! -e $JSON_FILE ]; then
+if [ -z "$JSON_FILE" ]; then
 	echo "Script fail because it can not find json file..."
 	exit 0
 fi
@@ -27,24 +27,21 @@ JSON_FILE_DIR=$(cd $(dirname "$JSON_FILE") && pwd -P)/$(basename "$JSON_FILE")
 
 
 # Get an relative path of log file
-
 LOG_FILE="$2"
 
 # Verify if log file of kitchen exist
-
-if [ ! -e $LOG_FILE ]; then
-	touch "LOG_FILE"
+if [ -z "$LOG_FILE" ]; then
+	# Use default file to register log
+	LOG_FILE="LOG_PENTAHO_ETL"
 	echo "Created..."
+else
+	# Get absolut path of LOG_FILE, that will be used by
+	# data-integration in your call, made below
+	LOG_FILE_DIR=$(cd $(dirname "$LOG_FILE") && pwd -P)/$(basename "$LOG_FILE")
+
+	# Concatenate string
+	LOG_FILE_DIR="$LOG_FILE_DIR $LOG_FILE"
 fi
-
-# Get absolut path of LOG_FILE, that will be used by
-# data-integration in your call, made below
-
-LOG_FILE_DIR=$(cd $(dirname "$LOG_FILE") && pwd -P)/$(basename "$LOG_FILE")
-
-# Concatenate string
-
-LOG_FILE_DIR="$LOG_FILE_DIR $LOG_FILE"
 
 
 
@@ -67,7 +64,7 @@ COMMAND="$KITCHEN_DIR -file="$JOB_FILE" -level=RowLevel -param:JSON_FILE="$JSON_
 echo "$COMMAND"
 
 # Run command
-eval "$COMMAND"
+eval $COMMAND
 
 # END
 
